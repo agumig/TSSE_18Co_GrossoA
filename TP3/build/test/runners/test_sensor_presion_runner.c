@@ -85,11 +85,11 @@ static void run_test(UnityTestFunction func, const char* name, UNITY_LINE_TYPE l
 int main(void)
 {
   UnityBegin("test_sensor_presion.c");
-  run_test(test_inicializacion, "test_inicializacion", 45);
-  run_test(test_eliminar_instancia, "test_eliminar_instancia", 51);
-  run_test(test_inicializacion_de_demasiados_sensores, "test_inicializacion_de_demasiados_sensores", 57);
-  run_test(test_obtener_valores_en_pascal, "test_obtener_valores_en_pascal", 79);
-  run_test(test_obtener_valores_limites_en_pascal, "test_obtener_valores_limites_en_pascal", 95);
+  run_test(test_inicializacion, "test_inicializacion", 48);
+  run_test(test_eliminar_instancia, "test_eliminar_instancia", 54);
+  run_test(test_inicializacion_de_demasiados_sensores, "test_inicializacion_de_demasiados_sensores", 60);
+  run_test(test_obtener_valores_en_pascal, "test_obtener_valores_en_pascal", 82);
+  run_test(test_obtener_valores_limites_en_pascal, "test_obtener_valores_limites_en_pascal", 98);
 
   return UnityEnd();
 }

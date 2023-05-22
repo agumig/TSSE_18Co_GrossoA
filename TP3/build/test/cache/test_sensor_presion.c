@@ -11,8 +11,6 @@
 
 extern uint32_t valorTesting;
 
-
-
 pressure_p sensor[(4 + 2)] = {
 
                                          ((void *)0)
@@ -21,19 +19,11 @@ pressure_p sensor[(4 + 2)] = {
 
 
 
+static void instanciar_primer_dispositivo();
 
+static void desinstanciar_primer_dispositivo();
 
-
-
-
-
-
-
-
-
-
-
-void instanciar_primer_dispositivo()
+static void instanciar_primer_dispositivo()
 
 {
 
@@ -43,13 +33,13 @@ void instanciar_primer_dispositivo()
 
    ((void *)0)
 
-   )) {} else {UnityFail( (((" Expected Non-NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(31))));}} while(0);
+   )) {} else {UnityFail( (((" Expected Non-NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(34))));}} while(0);
 
 }
 
 
 
-void desinstanciar_primer_dispositivo()
+static void desinstanciar_primer_dispositivo()
 
 {
 
@@ -63,13 +53,13 @@ void desinstanciar_primer_dispositivo()
 
     sensorDeleted = HW_Pressure_Free(&sensor[0]);
 
-    do {if ((sensorDeleted)) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (UNITY_UINT)((UNITY_UINT)(39)));}} while(0);
+    do {if ((sensorDeleted)) {} else {UnityFail( ((" Expected TRUE Was FALSE")), (UNITY_UINT)((UNITY_UINT)(42)));}} while(0);
 
     do {if ((((sensor[0])) == 
 
    ((void *)0)
 
-   )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(40))));}} while(0);
+   )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(43))));}} while(0);
 
 }
 
@@ -123,7 +113,7 @@ void test_inicializacion_de_demasiados_sensores(void)
 
        ((void *)0)
 
-       )) {} else {UnityFail( (((" Expected Non-NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(65))));}} while(0);
+       )) {} else {UnityFail( (((" Expected Non-NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(68))));}} while(0);
 
 
 
@@ -133,7 +123,7 @@ void test_inicializacion_de_demasiados_sensores(void)
 
        ((void *)0)
 
-       )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(68))));}} while(0);
+       )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(71))));}} while(0);
 
 
 
@@ -147,7 +137,7 @@ void test_inicializacion_de_demasiados_sensores(void)
 
        ((void *)0)
 
-       )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(73))));}} while(0);
+       )) {} else {UnityFail( (((" Expected NULL"))), (UNITY_UINT)((UNITY_UINT)((UNITY_UINT)(76))));}} while(0);
 
     }
 
@@ -179,7 +169,7 @@ void test_obtener_valores_en_pascal()
 
    ((void *)0)
 
-   ), (UNITY_UINT)(87), UNITY_DISPLAY_STYLE_INT64);
+   ), (UNITY_UINT)(90), UNITY_DISPLAY_STYLE_INT64);
 
 
 
@@ -215,7 +205,7 @@ void test_obtener_valores_limites_en_pascal()
 
    ((void *)0)
 
-   ), (UNITY_UINT)(103), UNITY_DISPLAY_STYLE_INT64);
+   ), (UNITY_UINT)(106), UNITY_DISPLAY_STYLE_INT64);
 
 
 
@@ -227,7 +217,7 @@ void test_obtener_valores_limites_en_pascal()
 
    ((void *)0)
 
-   ), (UNITY_UINT)(107), UNITY_DISPLAY_STYLE_INT64);
+   ), (UNITY_UINT)(110), UNITY_DISPLAY_STYLE_INT64);
 
 
 

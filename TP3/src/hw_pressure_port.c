@@ -5,7 +5,7 @@
 /********* macros and definitions *********/
 #define TAG  "HW_PRESSURE_PORT"
 
-uint32_t valorTesting = 0;
+uint32_t valorTesting = 0;  // variable que guarda las cuentas del ADC
 
 /********* private function prototypes *********/
 

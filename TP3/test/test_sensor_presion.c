@@ -5,7 +5,7 @@
  * 2. El software debe poder eliminar una instancia inicializada.
  * 3. El software debe inicializar la cantidad ya definida de dispositivos.
  * 4. El software debe entregar los valores convertidos a PASCAL según la ecuación de conversión 1mv = 355.555556 pa
- * 5. El software debe entrgar valor 0 para lecturas menores a el límite inferior (500 mV)
+ * 5. El software debe entregar valor 0 para lecturas menores a el límite inferior (500 mV) y saturar para lecturas mayores a 4500 mV
 */
 
 #include "unity.h"
@@ -13,11 +13,14 @@
 #include "hw_pressure_port.h"
 
 #define DEMASIADOS_SENSORES (CANT_PRESSURE_DEVICES + 2)
-#define PIN_CANAL_ADC 2
+#define PIN_CANAL_ADC 2 // Canal usado para inicializar
 
-extern uint32_t valorTesting;
+extern uint32_t valorTesting;   // variable que setea los mv que devolvería el adc
+pressure_p sensor[DEMASIADOS_SENSORES] = {NULL};    // sensores a instanciar
 
-pressure_p sensor[DEMASIADOS_SENSORES] = {NULL};
+static void instanciar_primer_dispositivo();
+static void desinstanciar_primer_dispositivo();
+
 /*
 void test_siempre_falla(void)
 {
@@ -25,13 +28,13 @@ void test_siempre_falla(void)
 }
 */
 
-void instanciar_primer_dispositivo()
+static void instanciar_primer_dispositivo()
 {
     sensor[0] = HW_Pressure_Init(PIN_CANAL_ADC);
     TEST_ASSERT_NOT_NULL(sensor[0]); 
 }
 
-void desinstanciar_primer_dispositivo()
+static void desinstanciar_primer_dispositivo()
 {
     bool_t sensorDeleted = false;
 
@@ -82,7 +85,7 @@ void test_obtener_valores_en_pascal()
 
     instanciar_primer_dispositivo();
 
-    valorTesting = 1350;
+    valorTesting = 1350;    // el adc leerá 1350 mV
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
     TEST_ASSERT_EQUAL_INT64 ((int64_t)(valorTesting * PRESSURE_CONSTANT_MV_PA), (int64_t)pressureValue);
     
@@ -90,7 +93,7 @@ void test_obtener_valores_en_pascal()
 
 }
 
-// 4. El software debe entregar los valores convertidos a PASCAL según la ecuación de conversión 1mv = 355.555556 pa
+// 5. El software debe entregar valor 0 para lecturas menores a el límite inferior (500 mV) y saturar para lecturas mayores a 4500 mV
 
 void test_obtener_valores_limites_en_pascal()
 {
@@ -98,11 +101,11 @@ void test_obtener_valores_limites_en_pascal()
 
     instanciar_primer_dispositivo();
 
-    valorTesting = 250;
+    valorTesting = 250; // el adc leerá 250 mV (debajo del límite inferior)
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
     TEST_ASSERT_EQUAL_INT64 ((int64_t) PRESSURE_RANGE_MIN, (int64_t)pressureValue);
     
-    valorTesting = 70000;
+    valorTesting = 70000; // el adc leerá 70000 mV (por encima del límite superior)
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
     TEST_ASSERT_EQUAL_INT64 ((int64_t) PRESSURE_RANGE_MAX, (int64_t)pressureValue);
 

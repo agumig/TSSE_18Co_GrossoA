@@ -4,23 +4,23 @@
   :file: test_sensor_presion.c
 :successes:
 - :test: test_inicializacion
-  :line: 45
+  :line: 48
   :message: ''
   :unity_test_time: 0
 - :test: test_eliminar_instancia
-  :line: 51
+  :line: 54
   :message: ''
   :unity_test_time: 0
 - :test: test_inicializacion_de_demasiados_sensores
-  :line: 57
+  :line: 60
   :message: ''
   :unity_test_time: 0
 - :test: test_obtener_valores_en_pascal
-  :line: 79
+  :line: 82
   :message: ''
   :unity_test_time: 0
 - :test: test_obtener_valores_limites_en_pascal
-  :line: 95
+  :line: 98
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -31,4 +31,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.0018800750003720168
+:time: 0.0013020290000440582
