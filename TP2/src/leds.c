@@ -25,7 +25,7 @@ static uint16_t IndexToMask(uint8_t led)
 void LedsInit(uint16_t * direccion)
 {
     Direccion = direccion;
-    *Direccion = ALL_LEDS_OFF;
+    LedsTurnOffAll();
 }
 
 void LedsTurnOnSingle(uint8_t led)
