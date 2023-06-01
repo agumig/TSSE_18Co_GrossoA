@@ -40,10 +40,7 @@ void LedsTurnOffSingle(uint8_t led)
 
 bool IsLedTurn(uint8_t led)
 {
-    if((*Direccion & IndexToMask(led)) != SINGLE_LED_OFF)
-    return true;
-    else
-    return false;
+    return ((*Direccion & IndexToMask(led)) != SINGLE_LED_OFF);
 }
 
 void LedsTurnOnAll(void)
