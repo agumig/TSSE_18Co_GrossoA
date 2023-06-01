@@ -51,7 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-build
+TP2/build
+TP3/build
 
 # Latex files
 *.pdf
