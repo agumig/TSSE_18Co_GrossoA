@@ -1,7 +1,0 @@
----
-src/sensor_presion.c:
-- TEST
-src/hw_pressure.c:
-- TEST
-src/hw_pressure_port.c:
-- TEST
