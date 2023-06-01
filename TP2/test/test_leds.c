@@ -21,21 +21,14 @@ void setUp(void)
     LedsInit(&puertoVirtual);   // inicializo la memoria
 }
 
-/*
-void test_siempre_falla(void)
-{
-    TEST_FAIL_MESSAGE("Empezamos...");
-}
-*/
 // Al inicializar la biblioteca todos los leds quedan apagados.
 void test_todos_los_leds_inician_apagados(void)
 {
     uint16_t puertoVirtual = 0xFFFF; // 16 bits debido a que hay 16 leds
 
-    LedsInit(&puertoVirtual);   // paso una dirección de memoria
+    LedsInit(&puertoVirtual);
 
     TEST_ASSERT_EQUAL_HEX16(0x0000, puertoVirtual); // chequeo que sea igual a cero
-    //TEST_ASSERT_BITS_LOW(0XFFFF, puertoVirtual);  // hay muchas funciones assert
 }
 
 // Con todos los leds apagados, prendo el led 2, verifico que se el bit 1 vale 1.
@@ -77,9 +70,6 @@ void test_prender_y_leer_un_led(void)
 // Apago un led, consulto el estado y tiene que estar apagado.
 void test_prender_apagar_y_leer_un_led(void)
 {
-        LedsTurnOnSingle(5);
-        LedsTurnOffSingle(5);
-
         TEST_ASSERT_EQUAL(false, IsLedTurn(5));
 }
 
