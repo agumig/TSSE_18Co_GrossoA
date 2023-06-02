@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
-
+/TP2/build
+/TP3/build
 # Object files
 *.o
 *.ko
@@ -50,9 +51,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-TP2/build
-TP3/build
-
-# Latex files
-*.pdf
