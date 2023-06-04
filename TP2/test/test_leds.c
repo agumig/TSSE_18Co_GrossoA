@@ -96,6 +96,15 @@ void test_valores_limites_leds(void)
     LedsTurnOnSingle(1);
 
     TEST_ASSERT_EQUAL_HEX16(0x8001, puertoVirtual); // chequeo
+    TEST_ASSERT_EQUAL(true, IsLedTurn(16));
+    TEST_ASSERT_EQUAL(true, IsLedTurn(1));
+    
+    LedsTurnOffSingle(1);
+    LedsTurnOffSingle(16);
+
+    TEST_ASSERT_EQUAL_HEX16(0x0000, puertoVirtual); // chequeo
+    TEST_ASSERT_EQUAL(false, IsLedTurn(16));
+    TEST_ASSERT_EQUAL(false, IsLedTurn(1));
 
 }
 
@@ -105,6 +114,15 @@ void test_valores_erroneos_leds(void)
     LedsTurnOnSingle(17);
     LedsTurnOnSingle(0);
 
-   TEST_ASSERT_EQUAL_HEX16(0x00000, puertoVirtual); // chequeo
+    TEST_ASSERT_EQUAL_HEX16(0x00000, puertoVirtual); // chequeo
+    TEST_ASSERT_EQUAL(false, IsLedTurn(17));
+    TEST_ASSERT_EQUAL(false, IsLedTurn(0));
+
+    LedsTurnOffSingle(1);
+    LedsTurnOffSingle(16);
+
+    TEST_ASSERT_EQUAL_HEX16(0x00000, puertoVirtual); // chequeo
+    TEST_ASSERT_EQUAL(false, IsLedTurn(17));
+    TEST_ASSERT_EQUAL(false, IsLedTurn(0));
 
 }
