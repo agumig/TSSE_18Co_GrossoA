@@ -10,12 +10,11 @@
 
 #include "unity.h"
 #include "hw_pressure.h"
-#include "hw_pressure_port.h"
+#include "mock_hw_pressure_port.h"
 
 #define DEMASIADOS_SENSORES (CANT_PRESSURE_DEVICES + 2)
 #define PIN_CANAL_ADC 2 // Canal usado para inicializar
 
-extern uint32_t valorTesting;   // variable que setea los mv que devolvería el adc
 pressure_p sensor[DEMASIADOS_SENSORES] = {NULL};    // sensores a instanciar
 
 static void instanciar_primer_dispositivo();
@@ -85,9 +84,9 @@ void test_obtener_valores_en_pascal()
 
     instanciar_primer_dispositivo();
 
-    valorTesting = 1350;    // el adc leerá 1350 mV
+    HW_Pressure_read_port_fake.return_val = 1350;    // el adc leerá 1350 mV
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
-    TEST_ASSERT_EQUAL_INT64 ((int64_t)(valorTesting * PRESSURE_CONSTANT_MV_PA), (int64_t)pressureValue);
+    TEST_ASSERT_EQUAL_INT64 ((int64_t)(1350 * PRESSURE_CONSTANT_MV_PA), (int64_t)pressureValue);
     
     desinstanciar_primer_dispositivo();
 
@@ -101,11 +100,11 @@ void test_obtener_valores_limites_en_pascal()
 
     instanciar_primer_dispositivo();
 
-    valorTesting = 250; // el adc leerá 250 mV (debajo del límite inferior)
+    HW_Pressure_read_port_fake.return_val = 250; // el adc leerá 250 mV (debajo del límite inferior)
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
     TEST_ASSERT_EQUAL_INT64 ((int64_t) PRESSURE_RANGE_MIN, (int64_t)pressureValue);
     
-    valorTesting = 70000; // el adc leerá 70000 mV (por encima del límite superior)
+    HW_Pressure_read_port_fake.return_val = 70000; // el adc leerá 70000 mV (por encima del límite superior)
     pressureValue = HW_Pressure_read_pascal(sensor[0]);
     TEST_ASSERT_EQUAL_INT64 ((int64_t) PRESSURE_RANGE_MAX, (int64_t)pressureValue);
 
